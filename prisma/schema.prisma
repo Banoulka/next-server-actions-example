@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Dog {
+  id        Int      @id @default(autoincrement())
+  name      String
+  age       Int
+  breed     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// would use something else, prisma session based stuff
+// was just way easier to use temporaraily
+model Session {
+  id        String   @id
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
